@@ -17,7 +17,31 @@ const day01a = input =>
       totalFrequency + currentFrequency
     )
 
+const day01b = input => {
+  const frequenciesVisited = new Set()
+  let foundDuplicate = undefined
+  let tempFrequency = 0
+
+  while (foundDuplicate === undefined) {
+    tempFrequency = input
+      .reduce((totalFrequency, currentFrequency) => {
+        const newTotalFrequency = totalFrequency + currentFrequency
+
+        if (foundDuplicate === undefined && frequenciesVisited.has(newTotalFrequency)) {
+          foundDuplicate = newTotalFrequency
+        }
+
+        frequenciesVisited.add(newTotalFrequency)
+
+        return newTotalFrequency
+      }, tempFrequency)
+  }
+
+  return foundDuplicate
+}
+
 getInput()
   .then(input => {
     console.log(`day01a: ${day01a(input)}`)
+    console.log(`day01b: ${day01b(input)}`)
   })
