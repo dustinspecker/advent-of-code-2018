@@ -7,12 +7,12 @@ const getInput = () =>
       fileContent
         .toString()
         .trim()
+        .split('\n')
+        .map(line => parseInt(line, 10))
     )
 
 const day01a = input =>
   input
-    .split('\n')
-    .map(line => parseInt(line, 10))
     .reduce((totalFrequency, currentFrequency) =>
       totalFrequency + currentFrequency
     )
